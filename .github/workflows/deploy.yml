@@ -22,6 +22,6 @@ jobs:
       run: |
         echo "$PRIVATE_KEY" > private_key.pem
         chmod 600 private_key.pem
-        cd C:/Users/david/OneDrive/Documents/Projects/RoyalesGPT
+        echo $(wslpath "C:\Users\david\OneDrive\Documents\Projects\RoyalesGPT")
         scp -i private_key.pem -r -o StrictHostKeyChecking=no . $USERNAME@$HOST:$TARGET_DIR
         rm -f private_key.pem
