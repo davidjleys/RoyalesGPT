@@ -1,0 +1,26 @@
+name: Deploy to DigitalOcean
+
+on:
+  push:
+    branches:
+      - master  # Replace with your default branch name if different (e.g., 'master')
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Deploy to DigitalOcean Droplet
+      env:
+        PRIVATE_KEY: ${{ secrets.DIGITALOCEAN_SSH_PRIVATE_KEY }}
+        HOST: ${{ secrets.DIGITALOCEAN_HOST }}
+        USERNAME: ${{ secrets.DIGITALOCEAN_USERNAME }}
+        TARGET_DIR: /RoyalesGPT
+      run: |
+        echo "$PRIVATE_KEY" > private_key.pem
+        chmod 600 private_key.pem
+        scp -i private_key.pem -r -o StrictHostKeyChecking=no . $USERNAME@$HOST:$TARGET_DIR
+        rm -f private_key.pem
