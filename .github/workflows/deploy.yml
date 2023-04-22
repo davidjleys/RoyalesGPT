@@ -21,7 +21,7 @@ jobs:
         TARGET_DIR: /RoyalesGPT
       run: |
         echo "$PRIVATE_KEY" > private_key.pem
-        echo %cd% # for Windows
         chmod 600 private_key.pem
-        scp -i private_key.pem -r -o StrictHostKeyChecking=no /mnt/c/Users/david/OneDrive/Documents/Projects/RoyalesGPT $USERNAME@$HOST:$TARGET_DIR
+        cd C:/Users/david/OneDrive/Documents/Projects/RoyalesGPT
+        scp -i private_key.pem -r -o StrictHostKeyChecking=no . $USERNAME@$HOST:$TARGET_DIR
         rm -f private_key.pem
