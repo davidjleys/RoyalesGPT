@@ -88,7 +88,7 @@ def create_stats_image(player_name, stats, background_path):
         skill_name = skill_name.capitalize()
 
         skill_text = f"{skill_name}: {stat['level']}"
-        xp_text = f"XP: {stat['xp'] / 10_000_000:.1f}M"
+        xp_text = f"XP: {stat['xp'] / 1_000_000:.1f}M"
 
         # Draw skill text outline
         for dx in range(-outline_width, outline_width + 1):
