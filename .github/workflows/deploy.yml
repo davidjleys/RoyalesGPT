@@ -22,5 +22,6 @@ jobs:
       run: |
         echo "$PRIVATE_KEY" > private_key.pem
         chmod 600 private_key.pem
-        scp -i private_key.pem -r -o StrictHostKeyChecking=no . $USERNAME@$HOST:$TARGET_DIR
+        scp -i private_key.pem -r -o StrictHostKeyChecking=no ${GITHUB_WORKSPACE} $USERNAME@$HOST:$TARGET_DIR
         rm -f private_key.pem
+
